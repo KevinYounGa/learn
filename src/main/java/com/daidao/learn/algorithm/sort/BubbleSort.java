@@ -2,18 +2,20 @@ package com.daidao.learn.algorithm.sort;
 
 import org.junit.Test;
 
-public class Sort {
+import java.util.Arrays;
+
+/**
+ * 冒泡排序
+ * https://blog.csdn.net/hansionz/article/details/80822494
+ */
+public class BubbleSort {
 
     private static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
-    /**
-     * 冒泡排序
-     * https://blog.csdn.net/hansionz/article/details/80822494
-     */
-    @Test
+
     public void bubbleSort01(int[] array) {
         if (array == null || array.length == 0) {
             return;
@@ -55,7 +57,7 @@ public class Sort {
      * 对于种类型数据，我们可以继续优化。既我们可以记下最后一次交换的位置，后边没有交换，必然是有序的，
      * 然后下一次排序从第一个比较到上次记录的位置结束即可。
      * */
-    void bubbleSort02(int arr[], int len) {
+    public static void bubbleSort02(int arr[], int len) {
         int i = 0;
         int tmp = 0;
         int flag = 0;
@@ -91,6 +93,17 @@ public class Sort {
             k = pos;
         }
     }
+
+
+
+
+    public static void main(String[] args) {
+        int[] a = {1, 2, 4, 5, 7, 4, 5 ,3 ,9 ,0};
+        System.out.println(Arrays.toString(a));
+        bubbleSort02(a,a.length);
+        System.out.println(Arrays.toString(a));
+    }
+
 
 
 
