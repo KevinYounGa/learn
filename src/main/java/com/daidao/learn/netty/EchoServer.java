@@ -30,13 +30,21 @@ public final class EchoServer {
         }
 
         // Configure the server.
+        /**
+         * bossGroup 用于接受 Tcp 请求，他会将请求交给 workerGroup ，workerGroup 会获取到真正的连接，然后和连接进行通信，比如读写解码编码等操作。
+         * */
         EventLoopGroup bossGroup = new NioEventLoopGroup(8);
         EventLoopGroup workerGroup = new NioEventLoopGroup(16);
         try {
+            //引导类，用于启动服务器和引导整个程序的初始化
             ServerBootstrap b = new ServerBootstrap();
+            //将两个 group 放入了自己的字段中，用于后期引导使用
             b.group(bossGroup, workerGroup)
+                    //通过这个 Class 对象反射创建 Channel
                     .channel(NioServerSocketChannel.class)//new ReflectiveChannelFactory<C>(channelClass)
+                    //添加了一些TCP的参数
                     .option(ChannelOption.SO_BACKLOG, 100)
+                    //添加了一个服务器专属的日志处理器 handler
                     .handler(new LoggingHandler(LogLevel.INFO))// ServerSocketChannel 专属
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override

@@ -8,6 +8,9 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ * 用于处理客户端发送来的消息
+ * */
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
     @Override
